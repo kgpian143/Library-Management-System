@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Wel-Come To | Admin Panel</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      name="viewport"
+    />
+    <!-- Bootstrap 3.3.6 -->
+    <link
+      rel="stylesheet"
+      href="/AdminAssets/bootstrap/css/bootstrap.min.css"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"
+    />
+    <!-- Ionicons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"
+    />
+    <!-- Ionicons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="/AdminAssets/plugins/datatables/dataTables.bootstrap.css"
+    />
+    <link rel="stylesheet" href="/AdminAssets/dist/css/AdminLTE.min.css" />
+    <link
+      rel="stylesheet"
+      href="/AdminAssets/dist/css/skins/_all-skins.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/AdminAssets/plugins/daterangepicker/daterangepicker.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/AdminAssets/plugins/datepicker/datepicker3.css"
+    />
+    <link rel="stylesheet" href="/AdminAssets/plugins/iCheck/all.css" />
+    <link
+      rel="stylesheet"
+      href="/AdminAssets/plugins/colorpicker/bootstrap-colorpicker.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/AdminAssets/plugins/timepicker/bootstrap-timepicker.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/AdminAssets/plugins/select2/select2.min.css"
+    />
+    <style>
+      .input {
+        border: 0;
+        padding: 10px;
+        font-size: 25px;
+        color: #ccc;
+        border: solid 1px #ccc;
+        margin: 0 0 20px;
+        width: 300px;
+        -moz-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+        box-shadow: inner 0 0 4px rgba(0, 0, 0, 0.2);
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+      }
+
+      input:focus {
+        outline: none !important;
+        border: 1px solid red;
+        box-shadow: 0 0 10px #719ece;
+      }
+
+      textarea:focus {
+        outline: none !important;
+        border: 1px solid red;
+        box-shadow: 0 0 10px #719ece;
+      }
+
+      div.stars {
+        display: inline-block;
+      }
+
+      input.star {
+        display: none;
+      }
+
+      label.star {
+        float: right;
+        padding: 10px;
+        font-size: 23px;
+        color: #444;
+        transition: all 0.2s;
+      }
+
+      input.star:checked ~ label.star:before {
+        content: "\f005";
+        color: #fd4;
+        transition: all 0.25s;
+      }
+
+      input.star-5:checked ~ label.star:before {
+        color: #fe7;
+        text-shadow: 0 0 20px #952;
+      }
+
+      input.star-1:checked ~ label.star:before {
+        color: #f62;
+      }
+
+      label.star:hover {
+        transform: rotate(-15deg) scale(1.3);
+      }
+
+      label.star:before {
+        content: "\f006";
+        font-family: FontAwesome;
+      }
+    </style>
+    <script src="/AdminAssets/jquery.min.js"></script>
+    <link
+      href="/Content/DevExtremeBundle?v=6dkc8mM2EeoWTbDDObyp5KadroT_ey1Fu-IMeNZjY9c1"
+      rel="stylesheet"
+    />
+
+    <script src="/Scripts/bundle?v=DqvfzgSbjG9pRPkEJHKemwz75VBRYk4Mz_QmJ1SeTyQ1"></script>
+
+    <script src="/Scripts/DevExtremeBundle?v=igFx_8M4j7U2epoTTKIslT7D7juX7vXKoqdC4_ky85w1"></script>
+
+    <style>
+      a {
+        text-transform: uppercase !important;
+      }
+
+      .btn {
+        text-transform: uppercase !important;
+      }
+    </style>
+    <script src="/AdminAssets/bootstrap.min.js"></script>
+  </head>
+
+  <body class="hold-transition skin-blue sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper" style="min-height: 750px">
+      <header class="main-header">
+        <a href="/Admin/index.html" class="logo">
+          <span class="logo-mini"><b>A</b>P</span>
+          <span class="logo-lg"><b> Admin </b> Panel</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+          <!-- Sidebar toggle button-->
+          <a
+            href="#"
+            class="sidebar-toggle"
+            data-toggle="offcanvas"
+            role="button"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img
+                    src="/AdminAssets/libraryprologo.png"
+                    style="background-color: white; border-radius: 50px"
+                    class="user-image"
+                    alt="User Image"
+                  />
+                  <span class="hidden-xs"> Admin Panel </span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img
+                      src="/AdminAssets/libraryprologo.png"
+                      style="background-color: white; border-radius: 50px"
+                      class="img-circle"
+                      alt="User Image"
+                    />
+                    <p>Wel-Come Admin,</p>
+                  </li>
+
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a
+                        href="/admin/ChangePassword"
+                        class="btn btn-default btn-flat"
+                        style="font-size: 13px"
+                        >Change Password</a
+                      >
+                    </div>
+                    <div class="pull-right">
+                      <a
+                        href="/home/Logout"
+                        class="btn btn-default btn-flat"
+                        style="font-size: 13px"
+                        >Sign out</a
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+      <aside class="main-sidebar">
+        <section class="sidebar">
+          <div class="user-panel">
+            <div
+              class="pull-left image"
+              style="background-color: white; border-radius: 50px"
+            >
+              <img
+                src="/AdminAssets/libraryprologo.png"
+                class="img-circle"
+                alt="User Image"
+              />
+            </div>
+            <div class="pull-left info">
+              <p>Admin Panel</p>
+              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+          </div>
+
+          <ul class="sidebar-menu">
+            <li>
+              <a href="/Admin/Index.html">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/Home/StudentRegister/?LPCODE=LYR5HK2115"
+                target="_blank"
+              >
+                <i class="fa fa-user"></i> <span>Register Online</span>
+                <span class="pull-right-container">
+                  <small class="label pull-right bg-green">new</small>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="/Admin/Setting.html">
+                <i class="fa fa-cogs"></i> <span>Setting</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-money"></i> <span> Expenses </span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="/Admin/ExpenseAddOrUpdate.html"
+                    ><i class="fa fa-circle-o"></i> Add New
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/Expenses.html"
+                    ><i class="fa fa-circle-o"></i> Expenses
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-cogs"></i> <span> Library Masters </span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="/Admin/ShiftAddOrUpdate.html"
+                    ><i class="fa fa-circle-o"></i> Add New Shift
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/Shifts.html"
+                    ><i class="fa fa-circle-o"></i> Shifts
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/SeatAddOrUpdate.html"
+                    ><i class="fa fa-circle-o"></i> Add New Seat
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/BulkSeats.html"
+                    ><i class="fa fa-circle-o"></i> Bulk Seats
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/Seats.html"
+                    ><i class="fa fa-circle-o"></i> Seats
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-users"></i> <span> Students </span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="/Admin/StudentAddOrUpdate.html"
+                    ><i class="fa fa-circle-o"></i> Add New Student
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/UploadLibraryStudents.html"
+                    ><i class="fa fa-circle-o"></i> Upload Excel File
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/Students.html"
+                    ><i class="fa fa-circle-o"></i> All Students
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/StudentsIdCard.html" target="_blank"
+                    ><i class="fa fa-circle-o"></i>
+                    Students ID CARD
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/SingleStudentsIdCard.html"
+                    ><i class="fa fa-circle-o"></i> Single ID CARD
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/SelectionList.html"
+                    ><i class="fa fa-circle-o"></i> ID CARD Selection
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-wheelchair"></i> <span> Seat Allocation </span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="/Admin/SeatAllocation.html"
+                    ><i class="fa fa-circle-o"></i> Assign New Seat
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/SeatAllocationReport.html"
+                    ><i class="fa fa-circle-o"></i> All Assigned Seats
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/SeatAllocationCurrentReport.html"
+                    ><i class="fa fa-circle-o"></i> Running Students
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/ShiftWiseBookings.html"
+                    ><i class="fa fa-circle-o"></i> Shift Wise Seats
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-file-pdf-o"></i> <span> Reports </span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="/Admin/DueFeesReport.html"
+                    ><i class="fa fa-circle-o"></i> Due Fees
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/OverDueFees.html"
+                    ><i class="fa fa-circle-o"></i> Pending Renewal
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/UpcomingRenewal.html"
+                    ><i class="fa fa-circle-o"></i> Upcoming Renewal
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/TodayRenewal.html"
+                    ><i class="fa fa-circle-o"></i> Today Renewal
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/BalanceSheet.html"
+                    ><i class="fa fa-circle-o"></i> Balance Sheet
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-calendar-check-o"></i> <span> Attendance </span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+
+                <span class="pull-right-container" style="margin-right: 20px">
+                  <small class="label pull-right bg-green">new</small>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="/Admin/Attendance.html"
+                    ><i class="fa fa-circle-o"></i> Mark Attendance
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/AllAttendance.html"
+                    ><i class="fa fa-circle-o"></i> Attendance Report
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/Admin/PaymentsReports.html">
+                <i class="fa fa-money"></i> <span> Payment Report </span>
+
+                <span class="pull-right-container">
+                  <small class="label pull-right bg-red">new</small>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="/Admin/AllReporters.html">
+                <i class="fa fa-users"></i> <span> Manage Panel Users </span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-commenting-o"></i> <span> Enquiries </span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="/Admin/EnquirAddOrUpdate.html"
+                    ><i class="fa fa-circle-o"></i> Add New Enquiry
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/Enquiries.html"
+                    ><i class="fa fa-circle-o"></i> Enquiries
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/Admin/HolidaysReminder.html">
+                <i class="fa fa-commenting-o"></i> <span> SMS Reminders </span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-list-ol"></i> <span> Logs </span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li>
+                  <a href="/Admin/SMSLogs.html"
+                    ><i class="fa fa-circle-o"></i> SMS Logs
+                  </a>
+                </li>
+                <li>
+                  <a href="/Admin/UserLogs.html"
+                    ><i class="fa fa-circle-o"></i> All Logs
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/Admin/ChangePassword.html" class="text-yellow">
+                <i class="fa fa-key"></i> <span> Change Password </span>
+              </a>
+            </li>
+
+            <li>
+              <a href="/Home/Logout" class="text-red">
+                <i class="fa fa-power-off"></i> <span> Logout</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </aside>
+
+      <div class="content-wrapper">
+        <section class="content-header">
+          <h1 style="text-transform: uppercase">Update Shift</h1>
+          <ol class="breadcrumb">
+            <li>
+              <a href="/admin"><i class="fa fa-dashboard"></i> Home</a>
+            </li>
+            <li><a href="#"> Update Shift </a></li>
+          </ol>
+        </section>
+
+        <section class="content" style="min-height: 600px">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <a href="/Admin/Shifts.html" class="btn btn-info"
+                    ><i class="fa fa-arrow-left"></i> Back</a
+                  >
+                </div>
+                <form enctype="multipart/form-data" id="shiftForm">
+                  <input type="hidden" id="Id" name="Id" value="" />
+                  <div class="box-body">
+                    <table class="table table-bordered table-condensed">
+                      <tr class="row">
+                        <td
+                          class="col-md-3"
+                          style="text-align: right !important"
+                        >
+                          <label class="control-label" style="margin-top: 5px">
+                            Shift <sup style="color: red">*</sup></label
+                          >
+                        </td>
+                        <td class="col-md-9">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              name="Shift"
+                              id="Shift"
+                              placeholder="Shift"
+                              class="form-control"
+                              required
+                              value
+                            />
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr class="row">
+                        <td
+                          class="col-md-3"
+                          style="text-align: right !important"
+                        >
+                          <label class="control-label" style="margin-top: 5px">
+                            Amount <sup style="color: red">*</sup></label
+                          >
+                        </td>
+                        <td class="col-md-9">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              onkeypress="return IsNumericCheck(event, value)"
+                              name="Amount"
+                              id="Amount"
+                              placeholder="Amount"
+                              class="form-control"
+                              required
+                              value="0"
+                            />
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr class="row">
+                        <td
+                          class="col-md-3"
+                          style="text-align: right !important"
+                        >
+                          <label class="control-label" style="margin-top: 5px">
+                            Is Full Day Shift ?
+                          </label>
+                        </td>
+                        <td class="col-md-9">
+                          <div class="form-group">
+                            <label
+                              for="IsFullDay"
+                              class="custom-control custom-checkbox"
+                            >
+                              <input
+                                id="IsFullDay"
+                                name="IsFullDay"
+                                class="custom-control-input"
+                                type="checkbox"
+                                value="true"
+                              />
+                              <span
+                                class="custom-control-label"
+                                for="IsFullDay"
+                              >
+                                Yes
+                              </span>
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr class="row">
+                        <td class="col-md-3">&nbsp;</td>
+                        <td class="col-md-9">
+                          <div class="input-group">
+                            <button
+                              type="submit"
+                              class="btn btn-primary"
+                              style="width: 100px; margin-right: 10px"
+                              onclick="submitForm(event)"
+                            >
+                              <i class="fa fa-save"> </i> Save
+                            </button>
+                            <button
+                              type="reset"
+                              class="btn btn-danger"
+                              style="margin-right: 30px; width: 100px"
+                            >
+                              <i class="fa fa-remove"> </i> Reset
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <footer class="main-footer" style="text-align: center; font-weight: 700">
+        <div class="row">
+          <div class="col-md-12" style="text-align: center">
+            Developed By
+            <a href="http://codywebs.com" target="_blank">
+              <img src="/AdminAssets/smallogo.png" style="height: 22px" />
+            </a>
+          </div>
+        </div>
+      </footer>
+      <div class="control-sidebar-bg"></div>
+    </div>
+
+    <script src="/AdminAssets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/AdminAssets/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+
+    <script src="/AdminAssets/plugins/select2/select2.full.min.js"></script>
+    <!-- InputMask -->
+    <script src="/AdminAssets/plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="/AdminAssets/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="/AdminAssets/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <!-- date-range-picker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script src="/AdminAssets/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap datepicker -->
+    <script src="/AdminAssets/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- bootstrap color picker -->
+    <script src="/AdminAssets/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+    <!-- bootstrap time picker -->
+    <script src="/AdminAssets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+    <!-- SlimScroll 1.3.0 -->
+    <script src="/AdminAssets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- iCheck 1.0.1 -->
+    <script src="/AdminAssets/plugins/iCheck/icheck.min.js"></script>
+    <!-- FastClick -->
+    <script src="/AdminAssets/plugins/fastclick/fastclick.js"></script>
+    <!-- SlimScroll -->
+    <script src="/AdminAssets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="/AdminAssets/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/AdminAssets/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/AdminAssets/dist/js/demo.js"></script>
+
+    <script>
+      $(".datepicker").datepicker({
+        autoclose: true,
+        //dateFormat: "MM dd, yy",
+        pickTime: false,
+        autoclose: true,
+        changeMonth: true,
+        changeYear: true,
+        // startDate: new Date(),
+        format: "dd-M-yyyy",
+      });
+    </script>
+
+    <script>
+      $(".datepickerAssign").datepicker({
+        autoclose: true,
+        //dateFormat: "MM dd, yy",
+        pickTime: false,
+        autoclose: true,
+        changeMonth: true,
+        changeYear: true,
+        //startDate: new Date(),
+        format: "dd-M-yyyy",
+      });
+    </script>
+
+    <script>
+      $(".dateofadmission").datepicker({
+        autoclose: true,
+        //dateFormat: "MM dd, yy",
+        pickTime: false,
+        autoclose: true,
+        changeMonth: true,
+        changeYear: true,
+        //format: "dd/mm/yyyy"
+        format: "dd-M-yyyy",
+      });
+    </script>
+
+    <script>
+      $("#datepicker").on("change", function () {
+        var selected = $(this).val();
+        selected = selected.replace(/-/g, "/");
+        var date = new Date(selected);
+        let next30days = new Date(date.setDate(date.getDate() + 29));
+
+        //var tagText = $(this).html();
+        //tagText = tagText.replace(/-/g, '/');
+        //var givenDate = new Date(tagText);
+
+        //  console.log('its', next30days);
+
+        //$(".datepicker2").datepicker('setDate', new Date(date));
+        $(".datepicker2")
+          .datepicker({
+            format: "dd-M-yyyy",
+          })
+          .datepicker("setDate", new Date(next30days));
+      });
+    </script>
+
+    <script>
+      $("#datepickerAssign").on("change", function () {
+        var selected = $(this).val();
+        selected = selected.replace(/-/g, "/");
+        var date = new Date(selected);
+        //date.setMonth(date.getMonth() + 1);
+        let next30days = new Date(date.setDate(date.getDate() + 29));
+
+        //$(".datepicker2").datepicker('setDate', new Date(date));
+        $(".datepicker3")
+          .datepicker({
+            format: "dd-M-yyyy",
+          })
+          .datepicker("setDate", new Date(next30days));
+      });
+    </script>
+    <script>
+      $(".date").datepicker({
+        onSelect: function (dateText) {
+          console.log(
+            "Selected date: " +
+              dateText +
+              "; input's current value: " +
+              this.value
+          );
+        },
+      });
+    </script>
+
+    <script>
+      $(".datepickermmdd").datepicker({
+        autoclose: true,
+        dateFormat: "MM yy",
+        changeMonth: true,
+        changeYear: true,
+      });
+    </script>
+    <script>
+      $(function () {
+        $(".example1").DataTable();
+
+        $("#example1").DataTable({
+          paging: false,
+          bFilter: true,
+          lengthChange: true,
+          searching: false,
+          ordering: true,
+          info: true,
+          autoWidth: true,
+        });
+      });
+    </script>
+
+    <script>
+      $(function () {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+
+        //Datemask dd/mm/yyyy
+        $("#datemask").inputmask("dd/mm/yyyy", { placeholder: "dd/mm/yyyy" });
+        //Datemask2 mm/dd/yyyy
+        $("#datemask2").inputmask("mm/dd/yyyy", { placeholder: "mm/dd/yyyy" });
+        //Money Euro
+        $("[data-mask]").inputmask();
+
+        //Date range picker
+        $("#reservation").daterangepicker();
+        //Date range picker with time picker
+        $("#reservationtime").daterangepicker({
+          timePicker: true,
+          timePickerIncrement: 30,
+          format: "MM/DD/YYYY h:mm A",
+        });
+        //Date range as a button
+        $("#daterange-btn").daterangepicker(
+          {
+            ranges: {
+              Today: [moment(), moment()],
+              Yesterday: [
+                moment().subtract(1, "days"),
+                moment().subtract(1, "days"),
+              ],
+              "Last 7 Days": [moment().subtract(6, "days"), moment()],
+              "Last 30 Days": [moment().subtract(29, "days"), moment()],
+              "This Month": [
+                moment().startOf("month"),
+                moment().endOf("month"),
+              ],
+              "Last Month": [
+                moment().subtract(1, "month").startOf("month"),
+                moment().subtract(1, "month").endOf("month"),
+              ],
+            },
+            startDate: moment().subtract(29, "days"),
+            endDate: moment(),
+          },
+          function (start, end) {
+            $("#daterange-btn span").html(
+              start.format("MMMM D, YYYY") + " - " + end.format("MMMM D, YYYY")
+            );
+          }
+        );
+
+        //Date picker
+
+        //iCheck for checkbox and radio inputs
+        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck(
+          {
+            checkboxClass: "icheckbox_minimal-blue",
+            radioClass: "iradio_minimal-blue",
+          }
+        );
+        //Red color scheme for iCheck
+        $(
+          'input[type="checkbox"].minimal-red, input[type="radio"].minimal-red'
+        ).iCheck({
+          checkboxClass: "icheckbox_minimal-red",
+          radioClass: "iradio_minimal-red",
+        });
+        //Flat red color scheme for iCheck
+        $(
+          'input[type="checkbox"].flat-red, input[type="radio"].flat-red'
+        ).iCheck({
+          checkboxClass: "icheckbox_flat-green",
+          radioClass: "iradio_flat-green",
+        });
+
+        //Colorpicker
+        $(".my-colorpicker1").colorpicker();
+        //color picker with addon
+        $(".my-colorpicker2").colorpicker();
+
+        //Timepicker
+        $(".timepicker").timepicker({
+          showInputs: false,
+        });
+      });
+    </script>
+
+    <script>
+      /** add active class and stay opened when selected */
+      var url = window.location;
+
+      // for sidebar menu entirely but not cover treeview
+      $("ul.sidebar-menu a")
+        .filter(function () {
+          return this.href == url;
+        })
+        .parent()
+        .addClass("active");
+
+      // for treeview
+      $("ul.treeview-menu a")
+        .filter(function () {
+          return this.href == url;
+        })
+        .parentsUntil(".sidebar-menu > .treeview-menu")
+        .addClass("active");
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        var returnurl = window.location.href;
+        var anchors = $("a");
+        anchors.each(function (index) {
+          if ($(this).attr("data-isReturn") == "true") {
+            var href = $(this).attr("href");
+            $(this).attr(
+              "href",
+              href + (href.match(/\?/) ? "&" : "?") + "returnurl=" + returnurl
+            );
+          }
+        });
+
+        $("#txtuppercase").keyup(function () {
+          $(this).val($(this).val().toUpperCase());
+        });
+
+        $("#txtuppercase2").keyup(function () {
+          $(this).val($(this).val().toUpperCase());
+        });
+
+        $("#txtuppercase3").keyup(function () {
+          $(this).val($(this).val().toUpperCase());
+        });
+
+        $("#txtuppercase4").keyup(function () {
+          $(this).val($(this).val().toUpperCase());
+        });
+
+        $("#txtuppercase5").keyup(function () {
+          $(this).val($(this).val().toUpperCase());
+        });
+
+        $("#txtuppercase6").keyup(function () {
+          $(this).val($(this).val().toUpperCase());
+        });
+      });
+    </script>
+    <script language="Javascript">
+      function IsNumericCheck(e, value) {
+        //Check Charater
+        var unicode = e.charCode ? e.charCode : e.keyCode;
+        if (value.indexOf(".") != -1) if (unicode == 46) return false;
+        if (unicode != 8)
+          if ((unicode < 48 || unicode > 57) && unicode != 46) return false;
+      }
+    </script>
+    <script>
+      document
+        .getElementById("shiftForm")
+        .addEventListener("submit", submitForm);
+
+      async function submitForm(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const form = document.getElementById("shiftForm");
+        const formData = new FormData(form);
+        const isFullDayCheckbox = document.getElementById("IsFullDay");
+        const isFullDayValue = isFullDayCheckbox.checked ? "true" : "false";
+
+        formData.set("IsFullDay", isFullDayValue);
+        const shiftid = formData.get("Id");
+        console.log("id", shiftid);
+
+        try {
+          // if it is update call
+          if (shiftid) {
+            const response = await fetch(
+              `http://localhost:5000/update-shift/${shiftid}`,
+              {
+                method: "PUT",
+                body: formData,
+              }
+            );
+            const result = await response.json();
+            if (result.success) {
+              alert("Shift updated successfully");
+              // redirect to expenses page
+              window.location.href = "/Admin/Shifts.html";
+            } else {
+              alert("Error updating shift. Please try again.");
+            }
+          } else {
+            const response = await fetch("http://localhost:5000/add-shift", {
+              method: "POST",
+              body: formData,
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+              alert("Shift added successfully");
+              // redirect to the expenses page
+              window.location.href = "/Admin/Shifts.html";
+            } else {
+              alert("Error adding shift. Please try again.");
+            }
+          }
+        } catch (error) {
+          console.log("Error:", error);
+          alert("Internal Server Error. Please try again later.");
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Parse query string parameters
+        const params = new URLSearchParams(window.location.search);
+        console.log(params);
+
+        // Populate form fields with values from the query string
+        document.getElementById("Shift").value = params.get("shift_time") || "";
+        document.getElementById("IsFullDay").value =
+          params.get("is_full_day_shift") || "";
+        document.getElementById("Amount").value = params.get("amount") || "";
+        document.getElementById("Id").value = params.get("id") || "";
+        //
+      });
+    </script>
+  </body>
+</html>
