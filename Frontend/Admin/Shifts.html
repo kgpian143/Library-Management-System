@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Wel-Come To | Admin Panel</title>
+    <title>Wel-Come To | Bhagat Singh Library</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -163,10 +163,6 @@
       rel="stylesheet"
     />
 
-    <script src="/Scripts/bundle?v=DqvfzgSbjG9pRPkEJHKemwz75VBRYk4Mz_QmJ1SeTyQ1"></script>
-
-    <script src="/Scripts/DevExtremeBundle?v=igFx_8M4j7U2epoTTKIslT7D7juX7vXKoqdC4_ky85w1"></script>
-
     <style>
       a {
         text-transform: uppercase !important;
@@ -184,8 +180,10 @@
     <div class="wrapper" style="min-height: 750px">
       <header class="main-header">
         <a href="/Admin/index.html" class="logo">
-          <span class="logo-mini"><b>A</b>P</span>
-          <span class="logo-lg"><b> Admin </b> Panel</span>
+          <span class="logo-mini">BSL</span>
+          <span class="logo-lg" style="font-size: 15px"
+            ><b> Bhagat Singh Library </b></span
+          >
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -211,7 +209,7 @@
                     class="user-image"
                     alt="User Image"
                   />
-                  <span class="hidden-xs"> Admin Panel </span>
+                  <span class="hidden-xs"> Bhagat Singh Library </span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -223,25 +221,6 @@
                       alt="User Image"
                     />
                     <p>Wel-Come Admin,</p>
-                  </li>
-
-                  <li class="user-footer">
-                    <div class="pull-left">
-                      <a
-                        href="/admin/ChangePassword"
-                        class="btn btn-default btn-flat"
-                        style="font-size: 13px"
-                        >Change Password</a
-                      >
-                    </div>
-                    <div class="pull-right">
-                      <a
-                        href="/home/Logout"
-                        class="btn btn-default btn-flat"
-                        style="font-size: 13px"
-                        >Sign out</a
-                      >
-                    </div>
                   </li>
                 </ul>
               </li>
@@ -264,33 +243,18 @@
               />
             </div>
             <div class="pull-left info">
-              <p>Admin Panel</p>
+              <p style="font-size: 12px">Bhagat Singh Library</p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
 
           <ul class="sidebar-menu">
             <li>
-              <a href="/Admin/Index.html">
+              <a href="/Admin/index.html">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
               </a>
             </li>
-            <li>
-              <a
-                href="/Home/StudentRegister/?LPCODE=LYR5HK2115"
-                target="_blank"
-              >
-                <i class="fa fa-user"></i> <span>Register Online</span>
-                <span class="pull-right-container">
-                  <small class="label pull-right bg-green">new</small>
-                </span>
-              </a>
-            </li>
-            <li>
-              <a href="/Admin/Setting.html">
-                <i class="fa fa-cogs"></i> <span>Setting</span>
-              </a>
-            </li>
+
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-money"></i> <span> Expenses </span>
@@ -334,11 +298,7 @@
                     ><i class="fa fa-circle-o"></i> Add New Seat
                   </a>
                 </li>
-                <li>
-                  <a href="/Admin/BulkSeats.html"
-                    ><i class="fa fa-circle-o"></i> Bulk Seats
-                  </a>
-                </li>
+
                 <li>
                   <a href="/Admin/Seats.html"
                     ><i class="fa fa-circle-o"></i> Seats
@@ -359,30 +319,10 @@
                     ><i class="fa fa-circle-o"></i> Add New Student
                   </a>
                 </li>
-                <li>
-                  <a href="/Admin/UploadLibraryStudents.html"
-                    ><i class="fa fa-circle-o"></i> Upload Excel File
-                  </a>
-                </li>
+
                 <li>
                   <a href="/Admin/Students.html"
                     ><i class="fa fa-circle-o"></i> All Students
-                  </a>
-                </li>
-                <li>
-                  <a href="/Admin/StudentsIdCard.html" target="_blank"
-                    ><i class="fa fa-circle-o"></i>
-                    Students ID CARD
-                  </a>
-                </li>
-                <li>
-                  <a href="/Admin/SingleStudentsIdCard.html"
-                    ><i class="fa fa-circle-o"></i> Single ID CARD
-                  </a>
-                </li>
-                <li>
-                  <a href="/Admin/SelectionList.html"
-                    ><i class="fa fa-circle-o"></i> ID CARD Selection
                   </a>
                 </li>
               </ul>
@@ -405,146 +345,38 @@
                     ><i class="fa fa-circle-o"></i> All Assigned Seats
                   </a>
                 </li>
-                <li>
-                  <a href="/Admin/SeatAllocationCurrentReport.html"
-                    ><i class="fa fa-circle-o"></i> Running Students
-                  </a>
-                </li>
-                <li>
-                  <a href="/Admin/ShiftWiseBookings.html"
-                    ><i class="fa fa-circle-o"></i> Shift Wise Seats
-                  </a>
-                </li>
               </ul>
             </li>
+
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-file-pdf-o"></i> <span> Reports </span>
+                <i class="fa fa-wheelchair"></i> <span> SMS Reminders</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
+                <li>
+                  <a href="/Admin/HolidaysReminder.html"
+                    ><i class="fa fa-circle-o"></i> HolidaysReminder
+                  </a>
+                </li>
                 <li>
                   <a href="/Admin/DueFeesReport.html"
-                    ><i class="fa fa-circle-o"></i> Due Fees
+                    ><i class="fa fa-circle-o"></i> DuesReminder
                   </a>
                 </li>
                 <li>
-                  <a href="/Admin/OverDueFees.html"
-                    ><i class="fa fa-circle-o"></i> Pending Renewal
-                  </a>
-                </li>
-                <li>
-                  <a href="/Admin/UpcomingRenewal.html"
-                    ><i class="fa fa-circle-o"></i> Upcoming Renewal
-                  </a>
-                </li>
-                <li>
-                  <a href="/Admin/TodayRenewal.html"
-                    ><i class="fa fa-circle-o"></i> Today Renewal
-                  </a>
-                </li>
-                <li>
-                  <a href="/Admin/BalanceSheet.html"
-                    ><i class="fa fa-circle-o"></i> Balance Sheet
+                  <a href="/Admin/SMSLogs.html"
+                    ><i class="fa fa-circle-o"></i> SMSReport
                   </a>
                 </li>
               </ul>
             </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-calendar-check-o"></i> <span> Attendance </span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
 
-                <span class="pull-right-container" style="margin-right: 20px">
-                  <small class="label pull-right bg-green">new</small>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li>
-                  <a href="/Admin/Attendance.html"
-                    ><i class="fa fa-circle-o"></i> Mark Attendance
-                  </a>
-                </li>
-                <li>
-                  <a href="/Admin/AllAttendance.html"
-                    ><i class="fa fa-circle-o"></i> Attendance Report
-                  </a>
-                </li>
-              </ul>
-            </li>
             <li>
               <a href="/Admin/PaymentsReports.html">
                 <i class="fa fa-money"></i> <span> Payment Report </span>
-
-                <span class="pull-right-container">
-                  <small class="label pull-right bg-red">new</small>
-                </span>
-              </a>
-            </li>
-            <li>
-              <a href="/Admin/AllReporters.html">
-                <i class="fa fa-users"></i> <span> Manage Panel Users </span>
-              </a>
-            </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-commenting-o"></i> <span> Enquiries </span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li>
-                  <a href="/Admin/EnquirAddOrUpdate.html"
-                    ><i class="fa fa-circle-o"></i> Add New Enquiry
-                  </a>
-                </li>
-                <li>
-                  <a href="/Admin/Enquiries.html"
-                    ><i class="fa fa-circle-o"></i> Enquiries
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="/Admin/HolidaysReminder.html">
-                <i class="fa fa-commenting-o"></i> <span> SMS Reminders </span>
-              </a>
-            </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-list-ol"></i> <span> Logs </span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li>
-                  <a href="/Admin/SMSLogs.html"
-                    ><i class="fa fa-circle-o"></i> SMS Logs
-                  </a>
-                </li>
-                <li>
-                  <a href="/Admin/UserLogs.html"
-                    ><i class="fa fa-circle-o"></i> All Logs
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <a href="/Admin/ChangePassword.html" class="text-yellow">
-                <i class="fa fa-key"></i> <span> Change Password </span>
-              </a>
-            </li>
-
-            <li>
-              <a href="/Home/Logout" class="text-red">
-                <i class="fa fa-power-off"></i> <span> Logout</span>
               </a>
             </li>
           </ul>
@@ -556,7 +388,9 @@
           <h1 style="text-transform: uppercase">Manage Shift</h1>
           <ol class="breadcrumb">
             <li>
-              <a href="/admin"><i class="fa fa-dashboard"></i> Home</a>
+              <a href="/Admin/index.html"
+                ><i class="fa fa-dashboard"></i> Home</a
+              >
             </li>
             <li><a href="#"> Manage Shift </a></li>
           </ol>
@@ -691,16 +525,6 @@
         </section>
       </div>
 
-      <footer class="main-footer" style="text-align: center; font-weight: 700">
-        <div class="row">
-          <div class="col-md-12" style="text-align: center">
-            Developed By
-            <a href="http://codywebs.com" target="_blank">
-              <img src="/AdminAssets/smallogo.png" style="height: 22px" />
-            </a>
-          </div>
-        </div>
-      </footer>
       <div class="control-sidebar-bg"></div>
     </div>
 

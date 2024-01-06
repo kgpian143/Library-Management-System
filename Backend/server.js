@@ -402,6 +402,17 @@ app.get('/get-seat-allocations', (req, res) => {
 
 });
 
+app.get('/get-seat-allocations-with-due-amount', (req, res) => {
+    // get profile photo , student name , mobilenumber , seat no , shift time , start date , end date , payment status , payment mode , paid amount , discount using inner join 
+    pool.query('SELECT seat_allocation.allocation_id as id , students.profile_photo as profile_photo , students.student_name as student_name , students.mobile_number as mobile_number , seat.seat_no as seat_no , shifts.shift_time as shift_time , seat_allocation.total_amount as total_amount , seat_allocation.start_date as start_date , seat_allocation.end_date as end_date,  seat_allocation.paid_amount as paid_amount, seat_allocation.due_amount as due_amount  FROM seat_allocation INNER JOIN students ON seat_allocation.student_id = students.id INNER JOIN seat ON seat_allocation.seat_id = seat.seat_id INNER JOIN shifts ON seat_allocation.shift_id = shifts.shift_id WHERE due_amount > 0 ', (error, result) => {
+        if (error) throw error;
+
+        res.status(200).json(result.rows);
+    });
+
+});
+
+
 app.get('/get-seat-allocations-forshift', (req, res) => {
     const { shift_id } = req.body;
     pool.query('SELECT * FROM seat_allocation WHERE shift_id = $1', [shift_id], (error, result) => {
@@ -565,7 +576,132 @@ app.delete('/delete-payment-details/:id', (req, res) => {
     });
 });
 
+// total due payments from seat allocation 
 
+app.get('/get-total-due-amount', async (req, res) => {
+    pool.query('SELECT SUM(due_amount) as total_due_amount from seat_allocation',(error, result) => {
+        if(error) throw error;
+
+        res.status(200).json(result.rows);
+    });
+});
+
+// total students count
+app.get('/get-total-students', async (req, res) => {
+    pool.query('SELECT COUNT(*) as total_students from students',(error, result) => {
+        if(error) throw error;
+
+        res.status(200).json(result.rows);
+    });
+});
+
+// total seats count
+app.get('/get-total-seats', async (req, res) => {
+    pool.query('SELECT COUNT(*) as total_seats from seat',(error, result) => {
+        if(error) throw error;
+
+        res.status(200).json(result.rows);
+    });
+});
+
+// total expanse
+app.get('/get-total-expense', async (req, res) => {
+    pool.query('SELECT SUM(amount) as total_expense from expense',(error, result) => {
+        if(error) throw error;
+
+        res.status(200).json(result.rows);
+    });
+});
+
+// total shifts 
+app.get('/get-total-shifts', async (req, res) => {
+    pool.query('SELECT COUNT(*) as total_shifts from shifts',(error, result) => {
+        if(error) throw error;
+
+        res.status(200).json(result.rows);
+    });
+});
+
+// total seat allocations 
+app.get('/get-total-seat-allocation', async (req, res) => {
+    pool.query('SELECT COUNT(*) as total_seat_allocation from seat_allocation',(error, result) => {
+        if(error) throw error;
+
+        res.status(200).json(result.rows);
+    });
+});
+
+// send reminder message to students using twilio api
+app.post('/send-reminder/:id', async (req, res) => {
+
+    // get student name and mobile number from allocation id
+    const { id } = req.params;
+    console.log(id);
+
+    pool.query('SELECT student_name , mobile_number from students inner join seat_allocation on seat_allocation.student_id = students.id where allocation_id = $1', [id], async (error, result) => {
+        if (error) throw error;
+        const student_name = result.rows[0].student_name;
+        const mobile_number = result.rows[0].mobile_number;
+        console.log(student_name);
+        console.log(mobile_number);
+        // send message to student
+        // Your Account SID from www.twilio.com/console
+        // const accountSid = 'AC25669550e5400e0d3c0d8c0c62fd7c10';
+        // // Your Auth Token from www.twilio.com/console
+        // const authToken = 'bb58ad5afd16bab64914300b155b221d';
+
+        // const client = require('twilio')(accountSid, authToken);
+        // // add contry code before mobile number
+        
+        const mobile_number_with_code = "+91" + mobile_number;
+
+        // client.messages.create({
+        //     body: `Hello ${student_name} , your fees is due , please pay as soon as possible`,
+        //     to: mobile_number_with_code,  // Text this number
+        //     from: '+19724417884' // From a valid Twilio number
+        // })
+        //     .then((message) => {
+        //         console.log(message.sid);
+        //         res.json({ success: true });
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //          throw err;
+        // });
+        const axios = require('axios');
+
+        const encodedParams = new URLSearchParams();
+        encodedParams.set('sms', mobile_number_with_code);
+        encodedParams.set('message', `Hello ${student_name} , your fees is due , please pay as soon as possible`);
+        encodedParams.set('senderid', 'MyCompany');
+        encodedParams.set('schedule', '1377959755');
+        encodedParams.set('return', 'http://yourwebsite.com');
+        encodedParams.set('key', '1B490066-EA03-E39A-A18C-C4868E45CFAE');
+        encodedParams.set('username', 'temp-idk-test-dynamic');
+
+        const options = {
+            method: 'POST',
+            url: 'https://inteltech.p.rapidapi.com/send.php',
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded',
+                'X-RapidAPI-Key': '05f6fe7249msh03c73c90b591a5ap1a3221jsn5ea884e5ea4b',
+                'X-RapidAPI-Host': 'inteltech.p.rapidapi.com'
+            },
+            data: encodedParams,
+        };
+
+        try {
+            const response = await axios.request(options);
+            console.log(response.data);
+            res.json({ success: true });
+        } catch (error) {
+            console.error(error);
+            throw err;
+        }
+        
+    }
+    );
+});
 
 
 
