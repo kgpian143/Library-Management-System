@@ -812,11 +812,11 @@
             const result = await response.json();
 
             if (result.success) {
-              alert("Shift added successfully");
+              alert("Seat added successfully");
               // redirect to the expenses page
               window.location.href = "/Admin/Seats.html";
             } else {
-              alert("Error adding shift. Please try again.");
+              alert("Error adding seat. Please try again.");
             }
           }
         } catch (error) {

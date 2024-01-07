@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Wel-Come To | Bhagat Singh Library</title>
+    <title>WelCome To | Bhagat Singh Library</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -510,7 +510,7 @@
                                     </span>
                                 </h4>
                                 <p class="m-b-0" style="text-align: left; padding-top: 10px">
-                                    <button class="btn btn-info btnmodelshow" data-Id="${seat.seat_id}" data-seatno="${seat.seat_no}" data-seattype="${seat.seat_type}">
+                                    <button class="btn btn-info btnmodelshow" data-Id="${seat.seat_id}" data-seatno="${seat.seat_no}" data-seattype="${seat.seat_type}" data-seatamount="${seat.amount}">
                                     Book Now
                                     </button>
                                 </p>
@@ -645,7 +645,9 @@
                             class="form-control"
                             name="ShiftId"
                           >
-                            <!-- Options will be dynamically added here -->
+                            <!-- Options will be dynamically added here add default option -->
+                            <option value>Select</option>
+
                           </select>
 
                           <script>
@@ -658,7 +660,7 @@
                                   const option =
                                     document.createElement("option");
                                   option.value = shift.shift_id;
-                                  option.textContent = `${shift.shift_time} (Rs. ${shift.amount})`;
+                                  option.textContent = `${shift.shift_time}`;
                                   option.dataset.amount2 = shift.amount; // You can still keep the data attribute if needed for later
                                   select.appendChild(option);
                                 });
@@ -802,23 +804,35 @@
             let FinalAmount = 0;
             let PrintAmount = 0;
             let finaldays = 0;
-            document
-              .getElementById("ShiftId")
-              .addEventListener("change", function () {
-                let selectedShiftId = this.value;
-                let amount = this.options[this.selectedIndex].dataset.amount2;
-                // Now you can use selectedShiftId and amount as per your requirement
-                console.log(
-                  "Selected Shift ID:",
-                  selectedShiftId,
-                  "Amount:",
-                  amount
-                );
+            $(document).on("click", ".btnmodelshow", function () {
+              let SeatId = $(this).attr("data-Id");
+              let seatno = $(this).attr("data-seatno");
+              let seattype = $(this).attr("data-seattype");
+              let seatamount = $(this).attr("data-seatamount");
+              $("#seatnoshow").text(seatno + " - " + seattype);
+              $("#SeatId").val(SeatId);
+              $("#amountid").text(seatamount);
+              $("#totalamount").val(seatamount);
+              $("#ModelPopupId").modal("show");
+              FinalAmount = seatamount;
+            });
+            // document
+            //   .getElementById("ShiftId")
+            //   .addEventListener("change", function () {
+            //     let selectedShiftId = this.value;
+            //     let amount = this.options[this.selectedIndex].dataset.amount2;
+            //     // Now you can use selectedShiftId and amount as per your requirement
+            //     console.log(
+            //       "Selected Shift ID:",
+            //       selectedShiftId,
+            //       "Amount:",
+            //       amount
+            //     );
 
-                FinalAmount = amount;
-                console.log("New FinalAmount:", FinalAmount);
-                calc();
-              });
+            //     FinalAmount = amount;
+            //     console.log("New FinalAmount:", FinalAmount);
+            //     calc();
+            //   });
 
             $(document).on("change", ".mycheck2", function () {
               func();
@@ -831,8 +845,8 @@
                 PrintAmount = (FinalAmount * finaldays) / 30;
                 // convert PrintAmount in itegral part
                 let intval = Math.round(PrintAmount);
-                $("#amountid").text(intval);
                 $("#totalamount").text(intval);
+                $("#amountid").text(intval);
                 document.getElementById("totalamount").value = intval;
               } else {
                 $("#amountid").text(0);
@@ -858,13 +872,7 @@
           </script>
 
           <script>
-            $(document).on("click", ".btnmodelshow", function () {
-              let SeatId = $(this).attr("data-Id");
-              let seatno = $(this).attr("data-seatno");
-              $("#seatnoshow").text(seatno);
-              $("#SeatId").val(SeatId);
-              $("#ModelPopupId").modal("show");
-            });
+            
           </script>
 
           <script>
