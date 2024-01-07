@@ -444,13 +444,12 @@
                         function createTable(data) {
                           let table = "<table>";
                           table +=
-                            "<tr><th>SNo.</th><th>Shift Time</th><th>Amount</th><th>Full Day Status </th><th>Actions</th></tr>";
+                            "<tr><th>SNo.</th><th>Shift Time</th><th>Full Day Status </th><th>Actions</th></tr>";
 
                           data.forEach((row, index) => {
                             table += `<tr>
                     <td>${index + 1}</td>
                     <td>${row.shift_time}</td>
-                    <td>${row.amount}</td>
                     <td>${row.is_full_day_shift}</td>
                     <td>
                         <!-- Add buttons or links for actions -->
@@ -478,7 +477,7 @@
                             console.log(shift);
 
                             // Create a query string with shift data
-                            const queryString = `?id=${id}&shift_time=${shift[0].shift_time}&is_full_day_shift=${shift[0].is_full_day_shift}&amount=${shift[0].amount}`;
+                            const queryString = `?id=${id}&shift_time=${shift[0].shift_time}&is_full_day_shift=${shift[0].is_full_day_shift}`;
                             console.log(queryString);
 
                             // Redirect to the edit page with the query string
