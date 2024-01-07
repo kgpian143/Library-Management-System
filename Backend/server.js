@@ -4,6 +4,9 @@ const { Pool } = require('pg');
 const cors = require('cors');
 const multer = require('multer')
 
+// import env variables
+require('dotenv').config();
+
 
 const app = express();
 const port = 5000; // Choose a port number
@@ -162,15 +165,15 @@ app.delete('/delete-expense/:id', (req, res) => {
 app.get('/get-students', (req, res) => {
     pool.query('SELECT * FROM students', (error, result) => {
         if (error) throw error;
-        // const studentsWithBase64 = result.rows.map(student => {
-        //     const base64Image = Buffer.from(student.profile_photo).toString('base64');
-        //     return {
-        //         ...student,
-        //         profile_photo: `data:image/*;base64,${base64Image}`,
-        //     };
-        // });
+        const studentsWithBase64 = result.rows.map(student => {
+            const base64Image = Buffer.from(student.profile_photo).toString('base64');
+            return {
+                ...student,
+                profile_photo: `data:image/*;base64,${base64Image}`,
+            };
+        });
 
-        res.json(result.rows);
+        res.json(studentsWithBase64);
     });
 });
 
@@ -179,13 +182,13 @@ app.get('/get-students-available', (req, res) => {
     // console.log("get students");
     pool.query('SELECT * FROM students WHERE status = $1', [false], (error, result) => {
         if (error) throw error;
-        // const studentsWithBase64 = result.rows.map(student => {
-        //     const base64Image = Buffer.from(student.profile_photo).toString('base64');
-        //     return {
-        //         ...student,
-        //         profile_photo: `data:image/*;base64,${base64Image}`,
-        //     };
-        // });
+        const studentsWithBase64 = result.rows.map(student => {
+            const base64Image = Buffer.from(student.profile_photo).toString('base64');
+            return {
+                ...student,
+                profile_photo: `data:image/*;base64,${base64Image}`,
+            };
+        });
 
         res.json(result.rows);
     });
@@ -197,15 +200,15 @@ app.get('/get-student/:id', async (req, res) => {
         console.log(id);
         pool.query('SELECT * FROM students WHERE id = $1', [id], (error, result) => {
             if (error) throw error;
-            // const studentsWithBase64 = result.rows.map(student => {
-            //     const base64Image = Buffer.from(student.profile_photo).toString('base64');
-            //     return {
-            //         ...student,
-            //         profile_photo: `data:image/*;base64,${base64Image}`,
-            //     };
-            // });
+            const studentsWithBase64 = result.rows.map(student => {
+                const base64Image = Buffer.from(student.profile_photo).toString('base64');
+                return {
+                    ...student,
+                    profile_photo: `data:image/*;base64,${base64Image}`,
+                };
+            });
 
-            res.json(result.rows);
+            res.json(studentsWithBase64);
         });
     } catch (error) {
         console.error('Error getting expense:', error);
@@ -213,14 +216,14 @@ app.get('/get-student/:id', async (req, res) => {
     }
 })
 
-app.post('/add-student', upload.single('student_name'), (req, res) => {
+app.post('/add-student', upload.single('ProfilePhoto'), (req, res) => {
     const { Name, FatherName, MobileNo, Gender, Address, AadharCardNo } = req.body;
-    // const ProfilePhoto = req.file.buffer;
+    const ProfilePhoto = req.file.buffer;
 
     // add to db
     pool.query(
-        'INSERT INTO students (student_name, father_name, mobile_number, gender, address, aadhar_number, status) VALUES ($1, $2, $3, $4, $5, $6, $7)',
-        [Name, FatherName, MobileNo, Gender, Address, AadharCardNo, false],
+        'INSERT INTO students (student_name, profile_photo,  father_name, mobile_number, gender, address, aadhar_number, status) VALUES ($1, $2, $3, $4, $5, $6, $7 , $8)',
+        [Name, ProfilePhoto ,FatherName, MobileNo, Gender, Address, AadharCardNo, false],
         (error, result) => {
             if (error) {
                 console.error('Error adding student:', error);
@@ -251,6 +254,19 @@ app.put('/update-student/:id', (req, res) => {
 
 app.delete('/delete-student/:id', (req, res) => {
     const { id } = req.params;
+
+    // if student is deleted then delete seat allocation and payment details of that student
+    pool.query('DELETE FROM seat_allocation WHERE student_id = $1', [id], (error, result) => {
+        if (error) throw error;
+
+        // res.json({ success: true });
+    });
+
+    pool.query('DELETE FROM payments WHERE student_id = $1', [id], (error, result) => {
+        if (error) throw error;
+
+        // res.json({ success: true });
+    });
 
     pool.query('DELETE FROM students WHERE id = $1', [id], (error, result) => {
         if (error) throw error;
@@ -317,6 +333,13 @@ app.put('/update-shift/:id', upload.single("shift_time"), (req, res) => {
 app.delete('/delete-shift/:id', (req, res) => {
     const { id } = req.params;
 
+    // if shift is deleted then delete seat allocation of that shift
+    pool.query('DELETE FROM seat_allocation WHERE shift_id = $1', [id], (error, result) => {
+        if (error) throw error;
+
+        // res.json({ success: true });
+    });
+
     pool.query('DELETE FROM shifts WHERE shift_id = $1', [id], (error, result) => {
         if (error) throw error;
 
@@ -355,10 +378,18 @@ app.get('/get-seat/:id', async (req, res) => {
 
 app.post('/add-seat', upload.single('seat_no'), (req, res) => {
     const { SeatNo, SeatType } = req.body;
+    // calc amount for seat according to seat type
+    let Amount;
+    if (SeatType == "Non AC") {
+        Amount = 500;
+    } else if (SeatType == "AC") {
+        Amount = 600;
+    }
     // add to db
+    const SeatAmount = Amount;
     pool.query(
-        'INSERT INTO seat (seat_no, seat_type , booking_status) VALUES ($1, $2 , $3)',
-        [SeatNo, SeatType, "NO"],
+        'INSERT INTO seat (seat_no, seat_type , booking_status , amount ) VALUES ($1, $2 , $3 , $4)',
+        [SeatNo, SeatType, "NO" , SeatAmount],
         (error, result) => {
             if (error) throw error;
 
@@ -385,6 +416,13 @@ app.put('/update-seat/:id', upload.single('seat_no'), (req, res) => {
 app.delete('/delete-seat/:id', (req, res) => {
     const { id } = req.params;
 
+    // if seat is deleted then delete seat allocation of that seat
+    pool.query('DELETE FROM seat_allocation WHERE seat_id = $1', [id], (error, result) => {
+        if (error) throw error;
+
+        // res.json({ success: true });
+    });
+
     pool.query('DELETE FROM seat WHERE seat_id = $1', [id], (error, result) => {
         if (error) throw error;
 
@@ -396,8 +434,15 @@ app.get('/get-seat-allocations', (req, res) => {
     // get profile photo , student name , mobilenumber , seat no , shift time , start date , end date , payment status , payment mode , paid amount , discount using inner join 
     pool.query('SELECT seat_allocation.allocation_id as id , students.profile_photo as profile_photo , students.student_name as student_name , students.mobile_number as mobile_number , seat.seat_no as seat_no , shifts.shift_time as shift_time , seat_allocation.total_amount as total_amount , seat_allocation.start_date as start_date , seat_allocation.end_date as end_date,  seat_allocation.paid_amount as paid_amount, seat_allocation.due_amount as due_amount  FROM seat_allocation INNER JOIN students ON seat_allocation.student_id = students.id INNER JOIN seat ON seat_allocation.seat_id = seat.seat_id INNER JOIN shifts ON seat_allocation.shift_id = shifts.shift_id', (error, result) => {
         if (error) throw error;
+        const studentsWithBase64 = result.rows.map(student => {
+            const base64Image = Buffer.from(student.profile_photo).toString('base64');
+            return {
+                ...student,
+                profile_photo: `data:image/*;base64,${base64Image}`,
+            };
+        });
 
-        res.status(200).json(result.rows);
+        res.status(200).json(studentsWithBase64);
     });
 
 });
@@ -653,7 +698,7 @@ app.post('/send-reminder/:id', async (req, res) => {
         // const client = require('twilio')(accountSid, authToken);
         // // add contry code before mobile number
         
-        const mobile_number_with_code = "+91" + mobile_number;
+        const TARGET_PHONE_NUMBER = "+91" + mobile_number;
 
         // client.messages.create({
         //     body: `Hello ${student_name} , your fees is due , please pay as soon as possible`,
@@ -668,36 +713,15 @@ app.post('/send-reminder/:id', async (req, res) => {
         //         console.log(err);
         //          throw err;
         // });
-        const axios = require('axios');
-
-        const encodedParams = new URLSearchParams();
-        encodedParams.set('sms', mobile_number_with_code);
-        encodedParams.set('message', `Hello ${student_name} , your fees is due , please pay as soon as possible`);
-        encodedParams.set('senderid', 'MyCompany');
-        encodedParams.set('schedule', '1377959755');
-        encodedParams.set('return', 'http://yourwebsite.com');
-        encodedParams.set('key', '1B490066-EA03-E39A-A18C-C4868E45CFAE');
-        encodedParams.set('username', 'temp-idk-test-dynamic');
-
-        const options = {
-            method: 'POST',
-            url: 'https://inteltech.p.rapidapi.com/send.php',
-            headers: {
-                'content-type': 'application/x-www-form-urlencoded',
-                'X-RapidAPI-Key': '05f6fe7249msh03c73c90b591a5ap1a3221jsn5ea884e5ea4b',
-                'X-RapidAPI-Host': 'inteltech.p.rapidapi.com'
-            },
-            data: encodedParams,
-        };
-
-        try {
-            const response = await axios.request(options);
-            console.log(response.data);
+        var fast2sms = require('fast2sms');
+        var options = { API_KEY: process.env.API_KEY };
+        fast2sms.init(options)
+        fast2sms.send({ message: 'The SMS content e.g. "This is a message from Fast2SMS"', to: TARGET_PHONE_NUMBER }).then(function (data) {
+            console.log('data................', data);
             res.json({ success: true });
-        } catch (error) {
-            console.error(error);
-            throw err;
-        }
+        }).catch(function (error) {
+            console.log('err.................', error);
+        })
         
     }
     );
